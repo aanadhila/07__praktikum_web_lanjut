@@ -14,9 +14,10 @@ class TambahKolomMahasiswa extends Migration
     public function up()
     {
         Schema::table('mahasiswa', function (Blueprint $table) {
-            $table->string('Email')->after('Nama')->unique();
-            $table->date('Tanggal_lahir')->after('email')->nullable();
-            $table->string('Alamat')->after('Tanggal_lahir')->nullable();
+            $table->string('email')->after('nama')->unique();
+            $table->date('tanggal_lahir')->after('email')->nullable();
+            $table->string('alamat')->after('tanggal_lahir')->nullable();
+
         });
     }
 
@@ -29,7 +30,8 @@ class TambahKolomMahasiswa extends Migration
     {
         Schema::table('mahasiswa', function (Blueprint $table) {
             $table->dropColumn('email');
-            $table->dropColumn('Tanggal_lahir');
+            $table->dropColumn('tanggal_lahir');
+            $table->dropColumn('alamat');
         });
     }
 }
