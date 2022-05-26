@@ -31,9 +31,9 @@
     <tr>
         <th>Nim</th>
         <th>Nama</th>
-        <th>Email</th>
+        <!-- <th>Email</th>
         <th>Tanggal Lahir</th>
-        <th>Alamat</th>
+        <th>Alamat</th> -->
         <th>Kelas</th>
         <th>Jurusan</th>
         <th width="280px">Action</th>
@@ -42,10 +42,10 @@
     <tr>
         <td>{{ $mhs ->nim }}</td>
         <td>{{ $mhs ->nama }}</td>
-        <td>{{ $mhs ->email }}</td>
+        <!-- <td>{{ $mhs ->email }}</td>
         <td>{{ $mhs ->tanggal_lahir }}</td>
-        <td>{{ $mhs ->alamat }}</td>
-        <td>{{ $mhs ->kelas }}</td>
+        <td>{{ $mhs ->alamat }}</td> -->
+        <td>{{ $mhs ->kelas ->nama_kelas }}</td>
         <td>{{ $mhs ->jurusan }}</td>
         <td>
         <form action="{{ route('mahasiswa.destroy',['mahasiswa'=>$mhs->nim]) }}" method="POST">
@@ -60,6 +60,6 @@
         @endforeach
     </table>
     <br>
-    {{ $mahasiswa->links() }}
+    {{ $paginate->links() }}
     
 @endsection

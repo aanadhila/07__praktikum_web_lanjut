@@ -5,7 +5,7 @@
 <div class="container mt-5">
  <div class="row justify-content-center align-items-center">
    <div class="card" style="width: 24rem;">
-      <div class="card-header">Edit Mahasiswa</div>
+      <div class="card-header">Edit mahasiswa</div>
       <div class="card-body">
          @if ($errors->any())
          <div class="alert alert-danger">
@@ -17,43 +17,48 @@
             </ul>
          </div>
          @endif
-         <form method="post" action="{{ route('mahasiswa.update', $Mahasiswa->nim) }}" id="myForm">
+         <form method="post" action="{{ route('mahasiswa.update', $mahasiswa->nim) }}" id="myForm">
          @csrf
          @method('PUT')
             <div class="form-group">
                <label for="Nim">Nim</label>
                <br>
-               <input type="text" name="nim" class="form-control" id="Nim" value="{{ $Mahasiswa->nim }}" aria describedby="Nim" >
+               <input type="text" name="nim" class="form-control" id="Nim" value="{{ $mahasiswa->nim }}" aria describedby="Nim" >
             </div>
             <div class="form-group">
                <label for="Nama">Nama</label>
                <br>
-               <input type="text" name="nama" class="form-control" id="Nama" value="{{ $Mahasiswa->nama }}" aria describedby="Nama" >
-            </div>
+               <input type="text" name="nama" class="form-control" id="Nama" value="{{ $mahasiswa->nama }}" aria describedby="Nama" >
+            <!-- </div>
             <div class="form-group">
                <label for="Email">Email</label>
                <br>
-               <input type="email" name="email" class="form-control" id="Email" value="{{ $Mahasiswa->email }}" aria- describedby="email" >
+               <input type="email" name="email" class="form-control" id="Email" value="{{ $mahasiswa->email }}" aria- describedby="email" >
             </div>
             <div class="form-group">
                <label for="Tanggal_lahir">Tanggal Lahir</label>
                <br>
-               <input type="date" name="tanggal_lahir" class="form-control" id="Tanggal_lahir" value="{{ $Mahasiswa->tanggal_lahir }}" aria- describedby="tanggal_lahir" >
+               <input type="date" name="tanggal_lahir" class="form-control" id="Tanggal_lahir" value="{{ $mahasiswa->tanggal_lahir }}" aria- describedby="tanggal_lahir" >
             </div>
             <div class="form-group">
                <label for="Alamat">Alamat</label>
                <br>
-               <input type="Alamat" name="alamat" class="form-control" id="Tanggal_lahir" value="{{ $Mahasiswa->alamat }}" aria- describedby="alamat" >
+               <input type="Alamat" name="alamat" class="form-control" id="Tanggal_lahir" value="{{ $mahasiswa->alamat }}" aria- describedby="alamat" >
+            </div> -->
+            <br>
+            <div class="form-group">
+            <label for="Kelas">Kelas</label>
+            <select class="form-control" name="Kelas">
+               @foreach ($kelas as $kls)
+               <option value="{{ $kls->id }}" {{ $mahasiswa->kelas_id == $kls->id ? 'selected' : '' }}>{{ $kls->nama_kelas }}</option>
+               @endforeach
+               </select>
             </div>
             <div class="form-group">
-               <label for="Kelas">Kelas</label>
-               <br>
-               <input type="Kelas" name="kelas" class="form-control" id="Kelas" value="{{ $Mahasiswa->kelas }}" aria describedby="Kelas" >
-            </div>
             <div class="form-group">
                <label for="Jurusan">Jurusan</label>
                <br>
-               <input type="Jurusan" name="jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->jurusan }}" aria describedby="Jurusan" >
+               <input type="Jurusan" name="jurusan" class="form-control" id="Jurusan" value="{{ $mahasiswa->jurusan }}" aria describedby="Jurusan" >
             </div>
             
                <button type="submit" class="btn btn-primary">Submit</button>

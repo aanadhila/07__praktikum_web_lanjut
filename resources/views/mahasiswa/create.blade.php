@@ -30,20 +30,12 @@
                         <input type="Nama" name="Nama" class="form-control" id="Nama" ariadescribedby="Nama" >
                     </div>
                     <div class="form-group">
-                        <label for="Email">Email</label>
-                        <input type="Email" name="Email" class="form-control" id="Email" ariadescribedby="Email" >
-                    </div>
-                    <div class="form-group">
-                        <label for="Tanggal_lahir">Tanggal Lahir</label>
-                        <input type="date" name="Tanggal_lahir" class="form-control" id="Tanggal_lahir" aria-describedby="Tanggal_lahir" >
-                    </div>
-                    <div class="form-group">
-                        <label for="Alamat">Alamat</label>
-                        <input type="Alamat" name="Alamat" class="form-control" id="Alamat" ariadescribedby="Alamat" >
-                    </div>
-                    <div class="form-group">
-                        <label for="Kelas">Kelas</label>
-                        <input type="Kelas" name="Kelas" class="form-control" id="Kelas" ariadescribedby="password" >
+                    <label for="Kelas">Kelas</label>
+                    <select class="form-control" name="Kelas">
+                        @foreach ($Kelas as $kls)
+                        <option value="{{ $kls->id }}">{{ $kls->nama_kelas }}</option>
+                        @endforeach
+                    </select>
                     </div>
                     <div class="form-group">
                         <label for="Jurusan">Jurusan</label>

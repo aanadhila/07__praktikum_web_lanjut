@@ -13,12 +13,12 @@ class TambahKolomMahasiswa extends Migration
      */
     public function up()
     {
-        Schema::table('mahasiswa', function (Blueprint $table) {
-            $table->string('email')->after('nama')->unique();
-            $table->date('tanggal_lahir')->after('email')->nullable();
-            $table->string('alamat')->after('tanggal_lahir')->nullable();
+        // Schema::table('mahasiswa', function (Blueprint $table) {
+        //     $table->string('email')->after('nama')->unique();
+        //     $table->date('tanggal_lahir')->after('email')->nullable();
+        //     $table->string('alamat')->after('tanggal_lahir')->nullable();
 
-        });
+        // });
     }
 
     /**
@@ -28,10 +28,10 @@ class TambahKolomMahasiswa extends Migration
      */
     public function down()
     {
-        Schema::table('mahasiswa', function (Blueprint $table) {
-            $table->dropColumn('email');
-            $table->dropColumn('tanggal_lahir');
-            $table->dropColumn('alamat');
-        });
+        // Schema::table('mahasiswa', function (Blueprint $table) {
+        //     $table->dropColumn('email');
+        //     $table->dropColumn('tanggal_lahir');
+        //     $table->dropColumn('alamat');
+        // });
     }
 }
