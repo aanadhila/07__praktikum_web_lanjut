@@ -1,10 +1,12 @@
 <?php  
 namespace App\Http\Controllers; 
  
-use App\Models\Mahasiswa; 
-use Illuminate\Http\Request; 
-use Illuminate\Support\Facades\DB;
+use App\Models\Mahasiswa;
 use App\Models\Kelas;
+use Illuminate\Http\Request;
+use App\Models\Mahasiswa_Matakuliah;
+use App\Models\Matakuliah;
+use Illuminate\Support\Facades\DB;
  
 class MahasiswaController extends Controller 
 { 
@@ -35,28 +37,26 @@ class MahasiswaController extends Controller
     }
 
     public function store(Request $request)
-    {
+    { 
         //melakukan validasi data
         $validatedData = $request->validate([
             'nim' => 'required',
             'nama' => 'required',
-            'Kelas' => 'required',
+            'kelas' => 'required',
             'Jurusan' => 'required'
         ]);
 
         $mahasiswa = new Mahasiswa;
         $mahasiswa->nim = $request->get('nim');
         $mahasiswa->nama = $request->get('nama');
-        $mahasiswa->Email = $request->get('Email');
-        $mahasiswa->Tanggal_lahir = $request->get('Tanggal_lahir');
         $mahasiswa->Jurusan = $request->get('Jurusan');
-        $mahasiswa->No_Handphone = $request->get('No_Handphone');
+        $mahasiswa->kelas_id = $request->get('kelas');
 
-        $kelas = new Kelas;
-        $kelas->id = $request->get('Kelas');
 
+        // $kelas = new Kelas;
+        // $kelas->id = 
         //fungsi eloquent untuk menambahkan data dengan relasi belongsTo
-        $mahasiswa->kelas()->associate($kelas);
+        // $mahasiswa->kelas()->associate($kelas);
         $mahasiswa->save();
 
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
@@ -124,5 +124,13 @@ class MahasiswaController extends Controller
         return redirect()->route('mahasiswa.index')
         ->with('success', 'Mahasiswa Berhasil Diupdate');
     }
-
+    public function nilai($id_mahasiswa)
+    {
+        // Join relasi ke mahasiswa dan mata kuliah
+        $mhs = Mahasiswa_MataKuliah::with('matakuliah')->where("mahasiswa_id", $id_mahasiswa)->get();
+        $mhs->mahasiswa = Mahasiswa::with('kelas')->where("nim", $id_mahasiswa)->first();
+        //dd($mhs[0]);
+        // Menampilkan nilai
+        return view('mahasiswa.nilai', compact('mhs'));
+    }
 };  
