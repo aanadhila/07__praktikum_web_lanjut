@@ -9,7 +9,9 @@
         <b>Nama: </b> {{ $mhs->mahasiswa->nama}}<br>
         <b>Kelas: </b> {{ $mhs->mahasiswa->kelas->nama_kelas}}<br>
         <b>NIM: </b>{{ $mhs->mahasiswa->nim}}<br>
-
+        <div class="text-right">
+            <a href="{{ route('pdf', $mhs->mahasiswa->nim) }}" class="btn btn-success"> Cetak PDF</a>
+            </div>
         <br>
         <table class="table table-bordered">
             <tr>
@@ -27,5 +29,6 @@
             </tr>
             @endforeach
             </table>
+            
     </div>
 @endsection 
